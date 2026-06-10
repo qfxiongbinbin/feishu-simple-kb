@@ -1,5 +1,12 @@
 # Feishu Simple KB
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![Codex Skill](https://img.shields.io/badge/Codex-Skill-111827)
+![Feishu/Lark](https://img.shields.io/badge/Feishu%20%2F%20Lark-Knowledge%20Base-2563eb)
+![LLM Wiki](https://img.shields.io/badge/LLM-Wiki-7c3aed)
+![Bilingual](https://img.shields.io/badge/README-中文%20%7C%20English-f97316)
+![Version](https://img.shields.io/badge/version-0.1.0-blue)
+
 中文 | [English](#english)
 
 一个给 Codex / AI Agent 使用的飞书三层个人知识库 skill。
