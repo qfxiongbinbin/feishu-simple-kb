@@ -48,11 +48,15 @@ Use docs v2 for document content:
 
 ```bash
 lark-cli docs +update --api-version v2 --doc "<OBJ_TOKEN_OR_URL>" --command overwrite --content "<title>标题</title><p>内容</p>"
-lark-cli docs +update --api-version v2 --doc "<OBJ_TOKEN_OR_URL>" --command append --content "<p>追加内容</p>"
 lark-cli docs +fetch --api-version v2 --doc "<OBJ_TOKEN_OR_URL>"
 ```
 
 Prefer XML for structured writes unless the user explicitly asks for Markdown import.
+
+When updating the control console Log table, do not append Markdown table rows with
+`docs +update --command append`; Feishu will render them as plain paragraphs outside
+the table. Fetch the current console, merge the new row into the Log table in
+Markdown, then overwrite the whole console document.
 
 ## List Nodes
 
