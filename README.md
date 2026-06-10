@@ -9,7 +9,7 @@
 
 中文 | [English](#english)
 
-一个给 Codex / AI Agent 使用的飞书三层个人知识库 skill。
+一个给本地 AI Agent 使用的飞书三层个人知识库 skill，适用于 Codex、OpenClaw、Hermes 等支持本地 skill / 工具目录的 Agent。
 
 它把个人知识库简化成三个用户可见入口：
 
@@ -29,31 +29,31 @@
 
 ## 依赖
 
-- Codex 或兼容本地 skill 的 AI Agent
+- 支持本地 skill / tools / plugins 的 AI Agent，例如 Codex、OpenClaw、Hermes
 - `lark-cli`
 - 已完成飞书 / Lark 用户身份授权
 
-## 一句话安装
+## 让你的 Agent 一句话安装
 
 把下面这句话发给你的本地 Agent：
 
 ```text
-请帮我从 GitHub 安装这个 Codex skill：https://github.com/qfxiongbinbin/feishu-simple-kb 。安装到 ~/.codex/skills/feishu-simple-kb，并提醒我重启 Codex。
+请把 https://github.com/qfxiongbinbin/feishu-simple-kb 安装成你可发现的本地 skill。根据你的运行环境选择正确的 skills/tools/plugins 目录；安装后告诉我如何重启或重新加载，以及我应该用什么名字调用它。
 ```
 
-如果你的 Agent 已经支持 `$skill-installer`，也可以说：
+如果你的 Agent 已经支持 skill 安装器，也可以说：
 
 ```text
-用 $skill-installer 从 GitHub 安装 qfxiongbinbin/feishu-simple-kb 这个 skill。
+用你的 skill 安装器从 GitHub 安装 qfxiongbinbin/feishu-simple-kb 这个 skill。
 ```
 
-手动安装：
+Codex 手动安装示例：
 
 ```bash
 git clone https://github.com/qfxiongbinbin/feishu-simple-kb.git ~/.codex/skills/feishu-simple-kb
 ```
 
-安装后重启 Codex，让 skill 被重新发现。
+其他 Agent 请把仓库克隆到它自己的 skills / tools / plugins 目录。安装后重启或重新加载 Agent，让 skill 被重新发现。
 
 ## 常用口令
 
@@ -132,7 +132,7 @@ MIT
 
 ## English
 
-A Codex / AI Agent skill for building a simple three-layer personal knowledge base in Feishu / Lark.
+A local AI Agent skill for building a simple three-layer personal knowledge base in Feishu / Lark. It can be used by agents such as Codex, OpenClaw, Hermes, or any agent that supports local skills / tool directories.
 
 It exposes only three user-facing areas:
 
@@ -152,31 +152,31 @@ Under the hood, it follows the LLM Wiki pattern: the user provides sources, ques
 
 ## Requirements
 
-- Codex or another local-skill-compatible AI Agent
+- An AI Agent that supports local skills / tools / plugins, such as Codex, OpenClaw, or Hermes
 - `lark-cli`
 - Feishu / Lark user authentication for the target knowledge base
 
-## One-Sentence Install
+## One-Sentence Agent Install
 
 Send this to your local agent:
 
 ```text
-Please install this Codex skill from GitHub: https://github.com/qfxiongbinbin/feishu-simple-kb . Install it to ~/.codex/skills/feishu-simple-kb and remind me to restart Codex.
+Please install https://github.com/qfxiongbinbin/feishu-simple-kb as a local skill that you can discover. Choose the correct skills/tools/plugins directory for your runtime. After installation, tell me how to restart or reload you and what name I should use to invoke it.
 ```
 
-If your agent supports `$skill-installer`, you can say:
+If your agent has a skill installer, you can say:
 
 ```text
-Use $skill-installer to install qfxiongbinbin/feishu-simple-kb from GitHub.
+Use your skill installer to install qfxiongbinbin/feishu-simple-kb from GitHub.
 ```
 
-Manual install:
+Codex manual install example:
 
 ```bash
 git clone https://github.com/qfxiongbinbin/feishu-simple-kb.git ~/.codex/skills/feishu-simple-kb
 ```
 
-Restart Codex after installation so the skill can be discovered.
+For other agents, clone this repository into that agent's own skills / tools / plugins directory. Restart or reload the agent after installation so the skill can be discovered.
 
 ## Common Prompts
 
