@@ -5,7 +5,7 @@
 ![Feishu/Lark](https://img.shields.io/badge/Feishu%20%2F%20Lark-Knowledge%20Base-2563eb)
 ![LLM Wiki](https://img.shields.io/badge/LLM-Wiki-7c3aed)
 ![Bilingual](https://img.shields.io/badge/README-中文%20%7C%20English-f97316)
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.2.0-blue)
 
 中文 | [English](#english)
 
@@ -23,6 +23,8 @@
 
 - 在飞书个人知识库或指定 Wiki space 下创建三层结构
 - 把用户口述或文本写入 `收件箱`
+- 用户只说“记录到飞书知识库”时，先检索可访问知识库并请用户确认目标
+- 提取微信公众号文章链接，并把标题、来源、摘要和正文保存到 `收件箱`
 - 从 `收件箱` 编译高价值内容到 `笔记`
 - 把过期或已整理的原始记录移动到 `归档`
 - 用 `00-控制台` 维护 Schema、Index、Log 和待办视图
@@ -32,6 +34,8 @@
 - 支持本地 skill / tools / plugins 的 AI Agent，例如 Codex、OpenClaw、Hermes
 - `lark-cli`
 - 已完成飞书 / Lark 用户身份授权
+
+如果本地 `lark-cli` 已经登录并且具备目标知识库权限，Agent 会直接使用，不需要用户重复登录或重新授权。只有命令失败时才进入授权排查。
 
 ## 让你的 Agent 一句话安装
 
@@ -73,6 +77,20 @@ git clone https://github.com/qfxiongbinbin/feishu-simple-kb.git ~/.codex/skills/
 
 ```text
 用 $feishu-simple-kb 存一下：今天想到一个知识库搭建思路……
+```
+
+只说记录到飞书知识库：
+
+```text
+用 $feishu-simple-kb 记录到飞书知识库：今天读到一个关于 AI Agent 的观点……
+```
+
+如果目标不明确，Agent 会先列出你可访问的知识库，并问你是否写入某一个知识库。
+
+保存微信公众号文章：
+
+```text
+用 $feishu-simple-kb 保存这篇微信文章到飞书知识库：https://mp.weixin.qq.com/s/...
 ```
 
 ## 把收件箱编译成笔记
@@ -117,11 +135,13 @@ feishu-simple-kb/
 ├── SKILL.md
 ├── agents/
 │   └── openai.yaml
-└── references/
-    ├── command-patterns.md
-    ├── llm-wiki-patterns.md
-    ├── local-kb-patterns.md
-    └── setup-and-auth.md
+├── references/
+│   ├── command-patterns.md
+│   ├── llm-wiki-patterns.md
+│   ├── local-kb-patterns.md
+│   └── setup-and-auth.md
+└── tools/
+    └── extract_wechat_article.py
 ```
 
 ## License
@@ -146,6 +166,8 @@ Under the hood, it follows the LLM Wiki pattern: the user provides sources, ques
 
 - Creates the three-layer structure in a Feishu personal library or a specified Wiki space
 - Captures user text or spoken notes into `Inbox`
+- Lists available knowledge bases and asks for confirmation when the target is ambiguous
+- Extracts WeChat public article links and saves the title, source, digest, and body into `Inbox`
 - Compiles valuable inbox items into `Notes`
 - Moves stale or already-processed raw records into `Archive`
 - Maintains Schema, Index, Log, and task views in `00-控制台`
@@ -155,6 +177,8 @@ Under the hood, it follows the LLM Wiki pattern: the user provides sources, ques
 - An AI Agent that supports local skills / tools / plugins, such as Codex, OpenClaw, or Hermes
 - `lark-cli`
 - Feishu / Lark user authentication for the target knowledge base
+
+If local `lark-cli` is already logged in and authorized for the target knowledge base, the agent should use it directly. It should only enter login or permission troubleshooting when a command fails.
 
 ## One-Sentence Agent Install
 
@@ -196,6 +220,20 @@ Capture a note:
 
 ```text
 Use $feishu-simple-kb to save this: today I thought of a new knowledge-base setup idea...
+```
+
+Capture to Feishu when the target is not specified:
+
+```text
+Use $feishu-simple-kb to record this to my Feishu knowledge base: today I read an idea about AI agents...
+```
+
+If the target is ambiguous, the agent will list accessible knowledge bases and ask you to confirm where to write.
+
+Save a WeChat article:
+
+```text
+Use $feishu-simple-kb to save this WeChat article to my Feishu knowledge base: https://mp.weixin.qq.com/s/...
 ```
 
 ## Compile Inbox Into Notes

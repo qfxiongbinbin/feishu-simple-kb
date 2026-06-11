@@ -42,6 +42,22 @@ lark-cli wiki +node-get --as user --url "<WIKI_URL>" --format json
 
 Use the returned `space_id` and, when relevant, `node_token` as the target. If multiple spaces have similar names, show candidates and ask the user to choose; do not guess.
 
+## Resolve Target Knowledge Base For Capture
+
+When the user only says "record to Feishu knowledge base" without a target, list spaces first:
+
+```bash
+lark-cli wiki +space-list --as user --format json
+```
+
+Then:
+
+- If exactly one reasonable personal KB candidate exists, ask: `是记录到「<SPACE_NAME>」里面吗？`
+- If multiple candidates exist, show 3-5 names and ask the user to choose.
+- After confirmation, find or create the `个人知识库` root and its `00-控制台 / 收件箱 / 笔记 / 归档` nodes in that space.
+- If the command succeeds, do not ask the user to log in again.
+- If the command fails with auth or scope errors, switch to `references/setup-and-auth.md`.
+
 ## Write Or Update Docx Content
 
 Use docs v2 for document content:

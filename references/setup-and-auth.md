@@ -19,7 +19,8 @@ lark-cli wiki --help
 lark-cli docs --api-version v2 --help
 ```
 
-4. Prefer user identity for personal knowledge bases:
+4. If the user is already logged in and the command works, continue directly. Do not ask the user to log in or authorize again just because this is the first time this skill is used in a new agent.
+5. Prefer user identity for personal knowledge bases:
 
 ```bash
 lark-cli auth login
@@ -28,6 +29,7 @@ lark-cli auth login
 ## Permission Principles
 
 - Use `--as user` by default for Wiki spaces and personal libraries.
+- Treat successful `lark-cli wiki +space-list --as user --format json` or a successful Wiki/Docs command as proof that the local login is usable.
 - Ask the user to finish browser/device login if the CLI opens an auth flow.
 - If an API reports missing scopes, report the missing scope and ask the user to authorize the app/tool.
 - Never paste access tokens, refresh tokens, app secrets, cookies, or private keys into notes or final responses.
